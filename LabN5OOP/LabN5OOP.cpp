@@ -59,7 +59,7 @@ public:
 		return "Point2D";
 	}
 	virtual bool isA(string who) {
-		return (who == classname());
+		return (who == "Point2D");
 	}
 };
 
@@ -84,7 +84,7 @@ public:
 		return "Point3D";
 	}
 	bool isA(string who) {
-		return (who == classname() || Point2D::isA(who));
+		return (who == "Point3D" || Point2D::isA(who));
 	}
 };
 
@@ -111,12 +111,18 @@ int main()
 	cout << "p2 это Point3D:" << p2->isA("Point3D") << endl;
 	//4
 	cout << "Безопасный метод приведения типов (dynamic_cast):\n";
-	Point3D *p3 = new Point3D;
-	Point2D *p4 = dynamic_cast<Point2D*>(p3);
+	Point3D* p3 = new Point3D;
+	Point2D* p4 = dynamic_cast<Point2D*>(p3);
 	p4->print2();
+	delete p3;
 	//5
 	cout << "Безопасный метод приведения типов (вручную)\n";
-
+	p3 = new Point3D;
+	if (p3->isA("Point2D")) {
+		((Point2D*)p3)->print2();
+	}
+	//6
+	cout << "Передача объектов как параметров в функции\n";
 	delete p1;
 	delete p2;
 	delete p3;
