@@ -55,6 +55,9 @@ public:
 	void print2() {
 		cout << "Point2D\n";
 	}
+	virtual bool isA(string who) {
+		return (who == "Point2D");
+	}
 };
 
 class Point3D : public Point2D {
@@ -73,6 +76,9 @@ public:
 	}
 	void print2() {
 		cout << "Point3D\n";
+	}
+	bool isA(string who) {
+		return (who == "Point3D" || Point2D::isA(who));
 	}
 };
 
@@ -93,9 +99,11 @@ int main()
 	p2->print1();
 	p1->print2();
 	p2->print2();
-	delete p1;
-	delete p2;
 	//3
 	cout << "Проверка на принадлежность некоторому классу:\n";
+	cout << "p1 это Point3D:" << p1->isA("Point3D") << endl;
+	cout << "p2 это Point3D:" << p2->isA("Point3D") << endl;
+	delete p1;
+	delete p2;
 	return 0;
 }
