@@ -109,7 +109,16 @@ int main()
 	cout << "Проверка на принадлежность некоторому классу:\n";
 	cout << "p1 это Point3D:" << p1->isA("Point3D") << endl;
 	cout << "p2 это Point3D:" << p2->isA("Point3D") << endl;
+	//4
+	cout << "Безопасный метод приведения типов (dynamic_cast):\n";
+	Point3D *p3 = new Point3D;
+	Point2D *p4 = dynamic_cast<Point2D*>(p3);
+	p4->print2();
+	//5
+	cout << "Безопасный метод приведения типов (вручную)\n";
+
 	delete p1;
 	delete p2;
+	delete p3;
 	return 0;
 }
