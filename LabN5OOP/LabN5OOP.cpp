@@ -55,8 +55,11 @@ public:
 	void print2() {
 		cout << "Point2D\n";
 	}
+	virtual string classname() {
+		return "Point2D";
+	}
 	virtual bool isA(string who) {
-		return (who == "Point2D");
+		return (who == classname());
 	}
 };
 
@@ -77,8 +80,11 @@ public:
 	void print2() {
 		cout << "Point3D\n";
 	}
+	string classname() {
+		return "Point3D";
+	}
 	bool isA(string who) {
-		return (who == "Point3D" || Point2D::isA(who));
+		return (who == classname() || Point2D::isA(who));
 	}
 };
 
