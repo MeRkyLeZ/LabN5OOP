@@ -88,6 +88,49 @@ public:
 	}
 };
 
+class Base {
+public:
+	Base() {
+		cout << "Base()\n";
+	}
+	Base(Base* obj) {
+		cout << "Base(Base* obj)\n";
+	}
+	Base(Base& obj) {
+		cout << "Base(Base& obj)\n";
+	}
+	virtual	~Base() {
+		cout << "~Base()\n";
+	}
+};
+
+class Desc : public Base {
+public:
+	Desc() {
+		cout << "Desc()\n";
+	}
+	Desc(Desc* obj) {
+		cout << "Desc(Desc* obj)\n";
+	}
+	Desc(Desc& obj) {
+		cout << "Desc(Desc& obj)\n";
+	}
+	virtual	~Desc() {
+		cout << "~Desc()\n";
+	}
+};
+
+void func1(Base  obj) {
+
+}
+void func2(Base* obj) {
+
+}
+void func3(Base& obj) {
+
+}
+
+
 int main()
 {
 	setlocale(LC_ALL, "Russian");
@@ -123,8 +166,31 @@ int main()
 	}
 	//6
 	cout << "Передача объектов как параметров в функции\n";
+	cout << "f1\n";
+	Base base1;
+	func1(base1);
+	cout << "f2\n";
+	Base* base2 = new Base();
+	func2(base2);
+	cout << "f3\n";
+	Base& base3 = *new Base();
+	func3(base3);
+	cout << "f1\n";
+	Desc desc1;
+	func1(desc1);
+	cout << "f2\n";
+	Desc* desc2 = new Desc();
+	func2(desc2);
+	cout << "f3\n";
+	Desc& desc3 = *new Desc();
+	func3(desc3);
+	cout << "---\n";
 	delete p1;
 	delete p2;
 	delete p3;
+	delete base2;
+	delete desc2;
+	delete& base3;
+	delete& desc3;
 	return 0;
 }
